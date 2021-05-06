@@ -46,8 +46,8 @@
             <ul class="navbar-nav mr-auto">
 
                 @auth
-                    <li class="nav-item  @if(request()->is('my-orders')) active @endif">
-                        <a href="{{route('user.orders')}}" class="nav-link"> Fulano {{ session()->get('user') }}</a>
+                    <li class="nav-item  @if(request()->is('')) active @endif">
+                        <a href="#" class="nav-link"> {{ Auth::user()->name }}</a>
                     </li>
 
                     <li class="nav-item  @if(request()->is('my-orders')) active @endif">
