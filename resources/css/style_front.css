@@ -1,0 +1,36 @@
+/* front.blade */
+.navbar{position: relative;}
+.navbar .ul-search{
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+
+.navbar .form-inline{
+    width: 98%;
+}
+.navbar .form-inline input{
+    width: 85%;
+}
+
+.sub-menu ul{
+    text-align: center;
+    margin: auto;
+}
+.sub-menu{margin-bottom: 40px;}
+
+/*welcome.blade*/
+.links{text-decoration:none; }
+.links:hover{text-decoration: none;}
+
+.card-products{color: black; width: 250px; height: 290px;}
+.card-products .card-body h2,h3{font-size: 15pt;}
+
+.card-products img{
+    width: 200px;
+    height: 100px;
+    max-width: auto;
+    max-height: 100%; 
+}
+.card-products h3{font-weight: bold; text-align: center;}
+
