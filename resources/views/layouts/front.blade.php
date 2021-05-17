@@ -45,6 +45,16 @@
         <div class="my-2 my-lg-0">
             <ul class="navbar-nav mr-auto">
 
+                @guest
+                    <li class="nav-item dropdown" id="menu-dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Entre, ou crie sua conta</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{route('login')}}">Faça Login</a>
+                                <a class="dropdown-item" href="{{route('register')}}">Ainda não é cliente? Crie sua conta</a>
+                        </div>
+                    </li>
+                @endguest
+                
                 @auth
                     <li class="nav-item  @if(request()->is('')) active @endif">
                         <a href="#" class="nav-link"> {{ Auth::user()->name }}</a>
@@ -116,6 +126,15 @@
 
     @yield('content')
 </div>
+    <script>
+       document.getElementById("menu-dropdown").addEventListener("onmousemove", menuDrop);
+
+        function menuDrop() {
+            alert('Ola mundo');
+            document.querySelector(".dropdown").classList.add("show");
+            
+        }
+    </script>
     @yield('scripts')
 </body>
 </html>
