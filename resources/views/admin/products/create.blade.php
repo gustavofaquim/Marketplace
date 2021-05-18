@@ -64,6 +64,18 @@
         </div>
 
 
+        <div class="form-group">
+            <label for="">Quantidade em estoque</label>
+            <input type="number" name="in_stock" id="in_stock" class="form-control @error('in_stock') is-invalid @enderror" value="{{old('in_stocktock')}}">
+        
+            @error('in_stock')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div> 
+            @enderror
+
+        </div>
+
         <div class="form-grup">
             <label for="">Fotos do produto</label>
             <input type="file" name="photos[]" class="form-control @error('photos.*') is-invalid @enderror " multiple>

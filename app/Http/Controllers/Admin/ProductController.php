@@ -56,11 +56,14 @@ class ProductController extends Controller
        $categories = $request->get('categories', null);
       
        $data['price'] = formtPriceToDataBase($data['price']);  //Formatando preço para salvar no banco, função em helpers
-       //$data['slug'] = $data['name'];
        
        $store = auth()->user()->store; //Pegando a loja do usuário logado
+       //dd($product = $store->products());
+       
        $product = $store->products()->create($data);
+       //dd($product);
        $product->categories()->sync($categories);
+
 
        if($request->hasFile('photos')){
             $images = $this->imageUpload($request->file('photos'), 'image');

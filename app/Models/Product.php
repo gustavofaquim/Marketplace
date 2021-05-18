@@ -11,19 +11,17 @@ class Product extends Model
     use HasFactory;
     use SlugTrait;
 
-    protected $fillable = ['name', 'description', 'body', 'price', 'slug'];
+    protected $fillable = ['name','in_stock','description','information', 'body', 'price', 'slug'];
 
     protected $casts = [
-        'informacoes' => 'array'
+        'information' => 'array'
     ];
 
     public function getThumbAttribute(){
         return $this->photos->first()->image;
     }
 
-   
-
-    
+     
     /*
      * Relações entre tabelas
      */
