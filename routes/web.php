@@ -15,6 +15,7 @@ use App\Http\Controllers\UserOrderController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\SearchConrtoller;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ use App\Http\Controllers\CheckoutController;
 
 
 Route::get('/',[HomeController::class, 'index'])->name("home");
+Route::get('/search',[SearchConrtoller::class, 'search'])->name("search");
 Route::get('/product/{slug}', [HomeController::class, 'single'])->name('product.single');
 Route::get('/category/{slug}', ["App\Http\Controllers\CategoryController"::class, 'index'])->name('category.single');
 Route::get('/store/{slug}', ["App\Http\Controllers\StoreController"::class, 'index'])->name('store.single');

@@ -19,10 +19,14 @@ class HomeController extends Controller
         //session()->flush(); //encerrando as sessões
         //$userStore = auth()->user()->store;
         //$products = $userStore->products()->limit(8)->get();
-        $products = Product::limit(15)->orderBy('id','DESC')->get();
+        //$products = Product::limit(15)->orderBy('id','DESC')->get();
         //$stores = Store::limit(3)->get();
-        $stores = Store::limit(3)->orderBy('id','DESC')->get();
+        //$stores = Store::limit(3)->orderBy('id','DESC')->get();
         
+    
+        $products = Product::limit(15)->orderBy('id','DESC')->get();
+        
+        $stores = Store::limit(3)->orderBy('id','DESC')->get();
 
         return view('welcome', ['products' => $products, 'stores' => $stores]);
     }
