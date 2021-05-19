@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Events\UserOrderedItems;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use App\Services\ProductStockManagerService;
 
 class UpdateRemovingItemsInStock
 {
@@ -26,6 +27,13 @@ class UpdateRemovingItemsInStock
      */
     public function handle(UserOrderedItems $event)
     {
-        dd($event->products);
+        (new ProductStockManagerService($event->userOrder))->addInProductInStock();
     }
 }
+
+
+// Existir o disparar do Evento UserOrderedItems -> 
+// UpdateRemovingItemsInStock removendo imtens da coluna in-stock dos produtos do pedido do usuario.
+
+// Existir o disparar do Evento UserCancelledOrder -> 
+// UpdateAddingBackImtensInStock, adiciona o item de volta ao estoque (compra cancelada, por exemplo).
