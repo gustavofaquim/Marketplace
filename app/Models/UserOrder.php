@@ -12,6 +12,14 @@ class UserOrder extends Model
     //protected $fillable = ['reference', 'pagseguro_status', 'pagseguro_code', 'store_id', 'items'];
     protected $fillable = ['reference', 'pagseguro_status', 'pagseguro_code', 'items'];
 
+    public function getItemAttribute(){
+        return unserialize($this->attributes['items']);
+    }
+    
+    public function setItemAttribute($prop){
+        $this->attribute['items'] = serialize($prop);
+    } 
+
     public function user(){
         return $this->belongsTo(User::class);
     }
