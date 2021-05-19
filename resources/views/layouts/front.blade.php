@@ -126,15 +126,6 @@
 
     @yield('content')
 </div>
-    <script>
-       document.getElementById("menu-dropdown").addEventListener("onmousemove", menuDrop);
-
-        function menuDrop() {
-            alert('Ola mundo');
-            document.querySelector(".dropdown").classList.add("show");
-            
-        }
-    </script>
     @yield('scripts')
 </body>
 </html>
