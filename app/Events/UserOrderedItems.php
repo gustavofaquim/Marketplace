@@ -9,27 +9,28 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use App\Models\UserOrder;
 
 class UserOrderedItems
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    private $products;
+    public $userOrder;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($products)
+    public function __construct(UserOrder $userOrder)
     {
-        $this->products = $products;
+        $this->userOrder = $userOrder;
         
     }
 
-    public function get_products(){
+    /*public function get_products(){
         return $this->products;
-    }
+    }*/
 
     /**
      * Get the channels the event should broadcast on.
