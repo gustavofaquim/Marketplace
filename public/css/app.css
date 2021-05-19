@@ -549,7 +549,7 @@ pre code {
 
 @media (min-width: 576px) {
   .container-sm, .container {
-    max-width: 540px;
+    /*max-width: 540px;*/
   }
 }
 @media (min-width: 768px) {
@@ -4443,6 +4443,7 @@ input[type=button].btn-block {
 .card-img-bottom {
   flex-shrink: 0;
   width: 100%;
+    height: 100%;
 }
 
 .card-img,

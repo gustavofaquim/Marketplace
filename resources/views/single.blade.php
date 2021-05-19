@@ -4,7 +4,13 @@
     <div class="row">
         <div class="col-6">
             @if($product->photos->count())
-                <img src="{{asset('storage/'. $product->thumb)}}" alt="" class="card-img-top thumb">
+<!--                --><?php
+//                    echo "<pre>";
+//                    print_r($product->thumb);
+//                     exit;
+//              ?>
+{{--                <img src="{{asset('storage/'.$product->thumb)}}" alt="" class="card-img-top thumb">--}}
+                <img src="{{asset('assets/img/no-photo.jpg')}}" alt="" class="card-img-top thumb">
 
                 <div class="row" style="margin-top:20px;">
                 @foreach($product->photos as $photo)
@@ -12,7 +18,7 @@
                         <img src="{{asset('storage/'.$photo->image)}}" alt="" class="img-fluid img-small">
                     </div>
                 @endforeach
-            
+
             @else
                 <img src="{{asset('assets/img/no-photo.jpg')}}" alt="" class="card-img-top">
             @endif
@@ -52,10 +58,10 @@
             <hr>
             {{$product->body}}
         </div>
-        
+
     </div>
 
-@endsection 
+@endsection
 
 @section('scripts')
 
@@ -70,7 +76,7 @@
             });
         });
 
-    
+
     </script>
 
 @endsection
