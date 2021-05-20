@@ -20,7 +20,7 @@
                 </div>
             </a>
            </div>
-           @if(($key + 1) % 4 == 0) </div><div class="row front">  @endif
+{{--           @if(($key + 1) % 4 == 0) </div><div class="row front">  @endif--}}
         @endforeach
 
     </div>
@@ -32,15 +32,15 @@
             <hr>
         </div>
             @foreach($stores as $store)
-                <div class="col-4">
+                <div class="col-4" id="blocoLoja">
                 @if($store->logo)
                         <img src="{{asset('storage/'.$store->logo)}}" alt="{{$store->name}}" class="img-fluid">
                     @else
                         <img src="https://via.placeholder.com/400X150.png?text=logo" alt="Loja sem logo" class="img-fluid">
                 @endif
-                    <h3>{{$store->name}}</h3>
+                    <h3 class="titleLoja">{{$store->name}}</h3>
                     <p>{{$store->description}}</p>
-                    <a href="{{ route('store.single', ['slug' => $store->slug])}}" class="btn btn-sm-success">Ver Loja</a>
+                    <a id="botaoLoja" href="{{ route('store.single', ['slug' => $store->slug])}}" class="btn btn-sm-success">Ver Loja</a>
                 </div>
             @endforeach
         </div>

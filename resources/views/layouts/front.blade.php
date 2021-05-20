@@ -14,7 +14,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
     <script src="{{asset('js/app.js')}}"></script>
-    
+
     <style>
         .front.row {
             margin-bottom: 40px;
@@ -31,7 +31,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        
+
         <div class="ul-search mr-auto">
             <ul class="navbar-nav">
                 <form class="form-inline my-2 my-lg-0" action="{{route('search')}}">
@@ -40,7 +40,7 @@
                 </form>
             </ul>
         </div>
-    
+
 
         <div class="my-2 my-lg-0">
             <ul class="navbar-nav mr-auto">
@@ -54,7 +54,7 @@
                         </div>
                     </li>
                 @endguest
-                
+
                 @auth
                     <li class="nav-item  @if(request()->is('')) active @endif">
                         <a href="#" class="nav-link"> {{ Auth::user()->name }}</a>
@@ -102,18 +102,18 @@
                     </div>
                 </li>
             @endif -->
-            
+
             @foreach($categories as $category)
                 <li class="nav-item nav-item @if(request()->is('category/' . $category->slug)) active @endif">
                     <a class="nav-link" href="{{route('category.single', ['slug' => $category->slug])}}">{{ $category->name }}</a>
                 </li>
             @endforeach
-            
+
     </ul>
 
 </nav>
 
-<div class="container">
+<div class="container" id="container">
     @if(session('msg'))
         <div class="alert alert-success msg" role="alert">
             <i class="fas fa-check"></i> {{ session('msg') }}

@@ -1,11 +1,12 @@
 /* front.blade */
-.navbar{position: relative;}
+.navbar{
+    position: relative;
+}
 .navbar .ul-search{
     width: 50%;
     margin: auto;
     text-align: center;
 }
-
 .navbar .form-inline{
     width: 98%;
 }
@@ -41,6 +42,7 @@
     height: 280px !important;
     max-width: unset !important;
     flex: unset !important;
+    margin-bottom: 25px !important;
 }
 #blocoHome a{
     width: 100%;
@@ -57,7 +59,26 @@
     height: 600px;
 }
 
-
+#container{
+    width: 100% !important;
+    max-width: 100% !important;
+}
+#blocoLoja {
+    height: 300px !important;
+    width: 300px !important;
+    flex: unset !important;
+    max-width: unset !important;
+}
+#blocoLoja img{
+    width: 100%;
+    height: 200px;
+}
+#blocoLoja .titleLoja{
+    margin-top: 5px;
+}
+#blocoLoja #botaoLoja:hover{
+    background-color: lightgray;
+}
 @media (max-width: 768px) {
     #row{
         display: flex !important;
@@ -65,7 +86,6 @@
         flex-direction: column !important;
     }
     #blocoHome{
-        margin-bottom: 25px !important;
         padding-left: unset !important;
         padding-right: unset !important;
     }
