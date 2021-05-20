@@ -21,7 +21,7 @@ class Product extends Model
         return $this->photos->first()->image;
     }
 
-     
+
     /*
      * Relações entre tabelas
      */

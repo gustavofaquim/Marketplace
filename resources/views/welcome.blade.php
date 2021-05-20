@@ -1,17 +1,17 @@
 @extends('layouts.front')
 
 @section('content')
-    <div class="row front">
+    <div class="row front" id="row">
         @foreach($products as $key => $product)
-           <div class="col-md-3"> 
+           <div class="col-md-3" id="blocoHome">
            <a href="{{route('product.single', ['slug'=> $product->slug])}}" class="links">
-                <div class="card card-products">
+                <div class="card card-products mr-3">
                         @if($product->photos->count())
                             <img src="{{asset('storage/'. $product->thumb)}}" alt="" class="card-img-top img-fluid">
                         @else
                             <img src="{{asset('assets/img/no-photo.jpg')}}" alt="" class="card-img-top img-fluid">
                         @endif
-                    
+
                         <div class="card-body">
                             <h2 class="car-title"> {{$product->name}}</h2>
                             <!-- <p class="card-text">{{ $product->description}}</p> -->
@@ -22,7 +22,7 @@
            </div>
            @if(($key + 1) % 4 == 0) </div><div class="row front">  @endif
         @endforeach
-    
+
     </div>
 
     @if($stores->count() > 0)
@@ -46,4 +46,4 @@
         </div>
     @endif
 
-@endsection 
+@endsection

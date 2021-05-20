@@ -2,15 +2,15 @@
 
 @section('content')
     <div class="row">
-        <div class="col-6">
+        <div class="col-6" id="colunaProduto">
             @if($product->photos->count())
 <!--                --><?php
 //                    echo "<pre>";
 //                    print_r($product->thumb);
 //                     exit;
 //              ?>
-{{--                <img src="{{asset('storage/'.$product->thumb)}}" alt="" class="card-img-top thumb">--}}
-                <img src="{{asset('assets/img/no-photo.jpg')}}" alt="" class="card-img-top thumb">
+                <img src="{{asset('storage/'.$product->thumb)}}" alt="" class="card-img-top thumb">
+{{--                <img src="{{asset('assets/img/no-photo.jpg')}}" alt="" class="card-img-top thumb">--}}
 
                 <div class="row" style="margin-top:20px;">
                 @foreach($product->photos as $photo)
