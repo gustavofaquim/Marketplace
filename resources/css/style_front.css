@@ -1,5 +1,5 @@
 /* front.blade */
-.navbar{
+/*.navbar{
     position: relative;
 }
 .navbar .ul-search{
@@ -21,9 +21,9 @@
 .sub-menu{
     margin-bottom: 40px;
 }
-
+*/
 /*welcome.blade*/
-.links{
+/*.links{
     text-decoration:none;
 }
 .links:hover{
@@ -90,3 +90,4 @@
         padding-right: unset !important;
     }
 }
+*/
