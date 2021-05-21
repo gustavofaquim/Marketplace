@@ -35,7 +35,7 @@
         <div class="ul-search mr-auto">
             <ul class="navbar-nav">
                 <form class="form-inline my-2 my-lg-0" action="{{route('search')}}">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar por nome, código, descrição" aria-label="Search" id="search" name="search">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar por nome, código, descrição" aria-label="Search" id="a" name="a">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
                 </form>
             </ul>
@@ -57,7 +57,7 @@
 
                 @auth
                     <li class="nav-item  @if(request()->is('')) active @endif">
-                        <a href="#" class="nav-link"> {{ Auth::user()->name }}</a>
+                        <a href="{{route('user.edit')}}" class="nav-link"> {{ Auth::user()->name }}</a>
                     </li>
 
                     <li class="nav-item  @if(request()->is('my-orders')) active @endif">

@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductPhotoController;
 use App\Http\Controllers\Admin\OrdersController;
+use App\Http\Controllers\Auth\UpdateController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\UserOrderController;
 use App\Http\Controllers\HomeController;
@@ -47,15 +48,16 @@ Route::prefix('checkout')->name('checkout.')->group(function(){
     Route::get('/', [CheckoutController::class, 'index'])->name('index');
     Route::post('/proccess', [CheckoutController::class, 'proccess'])->name('proccess');
     Route::get('/thanks', [CheckoutController::class, 'thanks'])->name('thanks');
-
     Route::post('/notification', [CheckoutController::class, 'notification'])->name('notification');
 });
 
 Route::get("my-orders",[UserOrderController::class, 'index'])->name('user.orders')->middleware('auth');
+Route::get("user-edit/",[UpdateController::class, 'edit'])->name('user.edit')->middleware('auth');
+Route::post("user-update/",[UpdateController::class, 'update'])->name('user.update')->middleware('auth');
 
 //Adimistradores do sistema
 Route::group(["middleware" => ["auth", "acess.control.store.admin"]], function(){
-    
+
     Route::prefix('admin')->name('admin.')->group(function(){
         /*Route::prefix('stores')->name('stores.')->group(function(){
             Route::get('/', [StoreController::class, 'index'])->name('index');
@@ -69,7 +71,7 @@ Route::group(["middleware" => ["auth", "acess.control.store.admin"]], function()
         Route::resource('stores', StoreController::class);
         Route::resource('products',ProductController::class);
         Route::resource('categories', CategoryController::class);
-
+        
         
         Route::post('photos/remove', [ProductPhotoController::class, 'removePhoto'])->name('photo.remove');
 
@@ -86,81 +88,6 @@ Route::group(["middleware" => ["auth", "acess.control.store.admin"]], function()
 });
 
 
-
-Route::get('/model', function(){
-    //$products = \App\Product::all();
-
-    /*$user = new User();
-    $user->name = 'Usuário Teste';
-    $user->email = 'email@teste.com';
-    $user->password = bcrypt('123456789');
-
-    //return $user::all();
-    return $user::paginate(10);*/
-
-    /*
-    
-    //Mass Assignmet - Atribuição em massa
-    $user::create([
-        'name'=> 'Teste teste',
-        'email'=> 'teste.teste@teste.com',
-        'password'=> bcrypt('123456789')
-    ]);*/
-
-
-    //Como pegar a loja de um usuário
-    //$user = User::find(4);
-
-    //return "<pre>".$user->store->products."</pre>";
-
-    //Criando uma loja
-   /* $user = User::find(10);
-    $store = $user->store()->create([
-        'name'=> "Loja Teste",
-        'description' => 'Loja Teste de produtos de informática',
-        'mobile_phone'=> 'XX-XXXX-XXX',
-        'phone'=> 'XXXXXXXXX',
-        'slug'=> 'loja-teste'
-    ]);
-
-    dd($store);*/
-
-    
-    //Criando produto para uma loja
-    /*$store = Store::find(31);
-    
-    $product = $store->products()->create([
-        'name'=> "Notebook Dell",
-        'description'=> "Core i5",
-        'body'=> "Qualquer coisaaaa",
-        'price'=> 2999,90,
-        'slug'=> "notebook-dell",
-    ]);
-
-    dd($product);*/
-
-    //Criar categoria
-    /*$category = Category::create([
-        'name'=>'Games',
-        'description'=> null,
-        'slug'=>'games'
-    ]);
-
-    $category = Category::create([
-        'name'=>'Notebooks',
-        'description'=> null,
-        'slug'=>'notebooks'
-    ]);
-
-    return $category::all();*/
-
-    // Adicionando categorias a um produto
-    // attach adiciona e detach remove
-    // sync adiciona todos do array, ou remove
-    $product-> categories()->attach([2]);
-    
-
-});
 
 Auth::routes();
 
