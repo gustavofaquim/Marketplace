@@ -84,7 +84,7 @@ class RegisterController extends Controller
     }
 
     protected function registered(Request $request, $user){
-        $email = "gustavofaquim408@gmail.com";
+        $email = $data['email'];
         Mail::to($email)->send(new UserRegisteredEmail($user));
 
         if($user->role == "ROLE_OWNER"){    
