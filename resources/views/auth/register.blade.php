@@ -6,7 +6,6 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Cadastro de Usuários') }}
-                    <p><a href="#">Crie uma conta de empresa</a></p>
                 </div>
 
                 <div class="card-body">
@@ -92,6 +91,15 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">   
+        
+                            <div class="col-md-6">
+                                <input id="role" type="checkbox" class="form-control @error('role') is-invalid @enderror" name="role" value="ROLE_OWNER"  autocomplete="role">
+                            </div>
+                            <label for="role" class="col-md-4 col-form-label text-md-left">Quero ser um vendedor</label>
+
+                        </div>
+                        
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

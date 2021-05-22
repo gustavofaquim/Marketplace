@@ -7,7 +7,7 @@
     <form action="{{ route('admin.stores.store') }}" method="post" enctype="multipart/form-data" >
         @csrf
         <div class="form-group">
-            <label for="">Nome Loja</label>
+            <label for="">Razão Social</label>
             <input type="text" name="name" id="" class="form-control @error('name') is-invalid @enderror" value="{{old('name')}}">
 
             @error('name')
@@ -16,6 +16,17 @@
                 </div> 
             @enderror
 
+        </div>
+
+        <div class="form-group">
+            <label for="">CNPJ</label>
+            <input type="text" name="cnpj" id="cnpj" class="form-control @error('cnpj') is-invalid @enderror" value="{{old('cnpj')}}">
+
+            @error('cnpj')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div> 
+            @enderror
         </div>
 
         <div class="form-group">
