@@ -17,6 +17,7 @@ class CreateTableStore extends Migration
             $table->increments('id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
             $table->string('name');
+            $table->string('cnpj');
             $table->text('description');
             $table->string('phone');
             $table->string('mobile_phone');
