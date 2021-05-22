@@ -1,7 +1,7 @@
 @extends('layouts.front')
 
 @section('content')
-    <div class="row">
+    <div class="row" id="blocoProduto">
         <div class="col-6" id="colunaProduto">
             @if($product->photos->count())
 <!--                --><?php
@@ -9,7 +9,7 @@
 //                    print_r($product->thumb);
 //                     exit;
 //              ?>
-                <img src="{{asset('storage/'.$product->thumb)}}" alt="" class="card-img-top thumb">
+                <img id="imgProduto" src="{{asset('storage/'.$product->thumb)}}" alt="" class="card-img-top thumb">
 {{--                <img src="{{asset('assets/img/no-photo.jpg')}}" alt="" class="card-img-top thumb">--}}
 
                 <div class="row" style="margin-top:20px;">
