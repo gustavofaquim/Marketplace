@@ -51,40 +51,44 @@ Route::prefix('checkout')->name('checkout.')->group(function(){
     Route::post('/notification', [CheckoutController::class, 'notification'])->name('notification');
 });
 
-Route::get("my-orders",[UserOrderController::class, 'index'])->name('user.orders')->middleware('auth');
-Route::get("user-edit/",[UpdateController::class, 'edit'])->name('user.edit')->middleware('auth');
-Route::post("user-update/",[UpdateController::class, 'update'])->name('user.update')->middleware('auth');
 
-//Adimistradores do sistema
-Route::group(["middleware" => ["auth", "acess.control.store.admin"]], function(){
 
-    Route::prefix('admin')->name('admin.')->group(function(){
-        /*Route::prefix('stores')->name('stores.')->group(function(){
-            Route::get('/', [StoreController::class, 'index'])->name('index');
-            Route::get('/create', [StoreController::class, 'create'])->name('create');
-            Route::post('/store', [StoreController::class, 'store'])->name('store');
-            Route::get('/{store}/edit', [StoreController::class, 'edit'])->name('edit');
-            Route::post('/update/{store}', [StoreController::class, 'update'])->name('update');
-            Route::get('/destroy/{store}', [StoreController::class, 'destroy'])->name('destroy');
+//Usuários logados
+Route::group(["middleware" => ["auth"]], function(){
+    Route::get("my-orders",[UserOrderController::class, 'index'])->name('user.orders');
+    Route::get("user-edit/",[UpdateController::class, 'edit'])->name('user.edit');
+    Route::post("user-update/",[UpdateController::class, 'update'])->name('user.update');
+
+    //usuários cadastrados como lojistas
+    Route::group(["middleware" => ["acess.control.store.admin"]], function(){
+
+        Route::prefix('admin')->name('admin.')->group(function(){
+            /*Route::prefix('stores')->name('stores.')->group(function(){
+                Route::get('/', [StoreController::class, 'index'])->name('index');
+                Route::get('/create', [StoreController::class, 'create'])->name('create');
+                Route::post('/store', [StoreController::class, 'store'])->name('store');
+                Route::get('/{store}/edit', [StoreController::class, 'edit'])->name('edit');
+                Route::post('/update/{store}', [StoreController::class, 'update'])->name('update');
+                Route::get('/destroy/{store}', [StoreController::class, 'destroy'])->name('destroy');
+                
+            });*/
+            Route::resource('stores', StoreController::class);
+            Route::resource('products',ProductController::class);
+            Route::resource('categories', CategoryController::class);
             
-        });*/
-        Route::resource('stores', StoreController::class);
-        Route::resource('products',ProductController::class);
-        Route::resource('categories', CategoryController::class);
-        
-        
-        Route::post('photos/remove', [ProductPhotoController::class, 'removePhoto'])->name('photo.remove');
+            
+            Route::post('photos/remove', [ProductPhotoController::class, 'removePhoto'])->name('photo.remove');
 
-        Route::get('orders/my', [OrdersController::class, 'index'])->name('orders.my');
+            Route::get('orders/my', [OrdersController::class, 'index'])->name('orders.my');
 
-        Route::get('notifications', [NotificationController::class, 'notifications'])->name('notifications.index');
-        Route::get('notifications/read-all', [NotificationController::class, 'readAll'])->name('notifications.read.all');
-        Route::get('notifications/read/{id}', [NotificationController::class, 'read'])->name('notifications.read');
+            Route::get('notifications', [NotificationController::class, 'notifications'])->name('notifications.index');
+            Route::get('notifications/read-all', [NotificationController::class, 'readAll'])->name('notifications.read.all');
+            Route::get('notifications/read/{id}', [NotificationController::class, 'read'])->name('notifications.read');
 
+        });
     });
 
     
-
 });
 
 
