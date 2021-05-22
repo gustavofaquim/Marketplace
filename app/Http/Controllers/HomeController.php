@@ -24,7 +24,7 @@ class HomeController extends Controller
         //$stores = Store::limit(3)->orderBy('id','DESC')->get();
         
     
-        $products = Product::limit(15)->orderBy('id','DESC')->get();
+        $products = Product::paginate(20);
         
         $stores = Store::limit(3)->orderBy('id','DESC')->get();
 
