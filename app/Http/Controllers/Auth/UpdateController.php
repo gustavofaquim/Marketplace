@@ -15,7 +15,6 @@ use App\Mail\UserRegisteredEmail;
 class UpdateController extends Controller
 {
     
-    
     public function edit(){
         
         $user = auth()->user();
@@ -23,9 +22,44 @@ class UpdateController extends Controller
         return view('auth.edit', ['user' => $user]);
     }
 
+
+    protected function validator(array $data)
+    {   
+       
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'cpf' => ['required', 'string'],
+            'address' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        ]);
+        
+    }
+
     public function update(Request $request){
         $data = $request->all();
+        
+        $msg = '';
+        $text = '';
+        $user = auth()->user();
+        
 
-        dd($data);
+        empty($data['password']) ? $data['password'] = $user->password : $data['password'] = Hash::make($data['password']);
+        
+
+        if($user->cpf == $data['cpf']){
+            if($user->update($data)){
+              $msg = 'msg';
+              $text = 'Usuário atualizado com sucesso';  
+            }
+            else{
+                $msg = 'msg-warning';
+                $text = 'Erro durante a atualização';  
+            }
+        }else{
+            $msg = 'msg-warning';
+            $text = 'Violação na integridade dos dados, o campo CPF não pode ser alterado!';  
+        }
+        return redirect( )->route('user.edit')->with($msg, $text);
+
     }
 }
