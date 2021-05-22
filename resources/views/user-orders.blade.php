@@ -21,7 +21,7 @@
                         <div id="collapse{{$key}}" class="collapse @if($key==0)show @endif" aria-labelledby="headingOne" data-parent="#accordionExample">
                         <div class="card-body">
                             <ul>
-                                @php $items = unserialize($order->items); @endphp
+                                @php $items = $order->items; @endphp
                                 @foreach($items as $item)
                                     <li>
                                     {{$item['name']}} | R$ {{number_format(($item['price'] * $item['amount']),2,',','.')}}
