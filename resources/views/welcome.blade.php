@@ -20,8 +20,9 @@
                 </div>
             </a>
            </div>
-{{--           @if(($key + 1) % 4 == 0) </div><div class="row front">  @endif--}}
+        
         @endforeach
+        {{ $products->links() }}
 
     </div>
 
