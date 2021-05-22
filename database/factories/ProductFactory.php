@@ -27,6 +27,7 @@ class ProductFactory extends Factory
             'body'=> $this->faker->paragraph(5, true),
             'price'=> $this->faker->randomFloat(2,1,10),
             'slug'=> $this->faker->slug,
+            'in_stock'=> $this->faker->randomDigit,
             
         ];
     }

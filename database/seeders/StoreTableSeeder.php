@@ -19,12 +19,13 @@ class StoreTableSeeder extends Seeder
         $stores = Store::all();
         
         foreach($stores as $store){
-            //$store->products()->save(factory(Product::class)->make);
+            
+            $store->products()->save(Product::factory()->make());
 
-            $products = Product::factory()
+            /*$products = Product::factory()
                 ->count(30)
                 ->has(Product::factory())
-                ->create();
+                ->create();*/
         } 
     
     }

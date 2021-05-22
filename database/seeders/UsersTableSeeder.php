@@ -31,11 +31,10 @@ class UsersTableSeeder extends Seeder
             ->create(); */
 
 
-
-        $user = User::factory()
-            ->has(Store::factory()
-            ->create()
-        );
+        
+        User::factory()->count(20)->create()->each(function($user){
+            $user->store()->save(Store::factory()->make());
+        });
         
     }
 }

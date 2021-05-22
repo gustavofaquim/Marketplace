@@ -25,6 +25,7 @@ class StoreFactory extends Factory
            'name'=> $this->faker->name,
            'description'=>$this->faker->sentence,
            'phone'=> $this->faker->phoneNumber,
+           'cnpj'=> $this->faker->phoneNumber,
            'mobile_phone' => $this->faker->phoneNumber,
            'slug'=> $this->faker->slug,
         ];
