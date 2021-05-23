@@ -20,11 +20,12 @@
             <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
                 @auth
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item @if(request()->is('admin/stores*')) active @endif">
-                            <a class="nav-link" href="{{ route('admin.stores.index') }}">Loja <span class="sr-only">(página atual)</span></a>
-                        </li>
                         
                         @if(auth()->user()->store()->exists())
+                            <li class="nav-item @if(request()->is('admin/stores*')) active @endif">
+                                <a class="nav-link" href="{{ route('admin.stores.index') }}">Loja <span class="sr-only">(página atual)</span></a>
+                            </li>
+                            
                             <li class="nav-item @if(request()->is('admin/products*')) active @endif">
                                 <a class="nav-link" href="{{ route('admin.products.index') }}">Produtos</a>
                             </li>

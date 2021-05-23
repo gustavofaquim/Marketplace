@@ -20,10 +20,16 @@ class StoreController extends Controller
     }
     
     public function index(){
+
+        
         //$stores = Store::all();
         //$stores = Store::paginate(10);
         $store = auth()->user()->store;
-        //dd(auth()->user()->store);                
+        //dd(auth()->user()->store);    
+        
+        if(!auth()->user()->store){
+            return redirect()->route('admin.dashboard');
+        }
 
         return view('admin.stores.index',['store'=>$store]);
     }
