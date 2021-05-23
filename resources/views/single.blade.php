@@ -59,6 +59,24 @@
             {{$product->body}}
         </div>
 
+        <div class='col-12'>
+            
+        @if($product->information != "")
+        <table class="table table-striped">
+            <tbody>
+            @foreach($product->information as $information){
+                <tr>
+                    <td>{{$information}}</td>
+                </tr>
+            }
+            @endforeach        
+            </tbody>
+        </table>
+        @endif
+
+
+        </div>
+
     </div>
 
 @endsection

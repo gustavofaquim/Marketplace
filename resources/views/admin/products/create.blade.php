@@ -54,6 +54,21 @@
 
         </div>
 
+        @if(isset($product))
+        <div>
+            @if($products->information != "")
+                <p>Informações</p>
+                @foreach($products->information as $information)
+                    <input type='text' name='information[]' class='info' id='information' value="{{old('information')}}">
+                @endforeach
+            @endif
+        </div>
+        @endif
+
+        <span class="ficha">Ficha Técnica: <div id="informacoes"></div>
+            <a href="#" id="btnAdd">Adicionar informações ao produto</a>
+        </span>
+
         <div class="form-group">
             <label for="">Categorias</label>
             <select name="categories[]" id="" class="from-control" multiple>
@@ -104,5 +119,19 @@
     <script src="https://cdn.rawgit.com/plentz/jquery-maskmoney/master/dist/jquery.maskMoney.min.js"></script>
     <script>
         $('#price').maskMoney({prefix: 'R$ ', allowNegative: false, thousands: '.', decimal: ','});
+    </script>
+
+    <script type="text/javascript">
+
+        var cont = 1;
+        $("#btnAdd").click(function(){
+            $("#informacoes").prepend("<div id='infos" + cont + "'>Informações: <input type='text' name='information[]' class='info' id='information'> <a href='#' id='" + cont + "' class='btn-remove'>-</a></div> <br>");
+            cont++;
+        });
+
+        $("form").on('click', '.btn-remove', function() {
+            var btn_id =  $(this).attr("id");
+            $("#informacaoes" + btn_id + "").remove();
+        });
     </script>
 @endsection
