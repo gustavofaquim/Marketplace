@@ -12,7 +12,7 @@ class Store extends Model
     use HasFactory;
     use SlugTrait;
 
-    protected $fillable = ['name', 'description', 'phone', 'mobile_phone', 'slug', 'logo'];
+    protected $fillable = ['name', 'description','cnpj', 'phone', 'mobile_phone', 'slug', 'logo'];
 
 
     // A loja pertecem a um usuário (1 pra 1)

@@ -102,6 +102,10 @@
         var imMobile_phone = new Inputmask("(99) 9999-9999");
         imMobile_phone.mask(mobile_phone);
 
+        var cnpj = document.getElementById('cnpj');
+        var imCnpj = new Inputmask("99.999.999/0009-99");
+        imCnpj.mask(cnpj);
+
        
     </script>
 
