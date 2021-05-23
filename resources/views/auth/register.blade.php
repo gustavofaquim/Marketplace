@@ -102,6 +102,7 @@
                         
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
+                                <p>Já tem cadastro? <a href="{{route('login')}}">Faça seu login</a></p>
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Criar Usuario') }}
                                 </button>

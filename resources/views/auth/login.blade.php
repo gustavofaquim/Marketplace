@@ -53,6 +53,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
+                            <p>Ainda não tem cadastro? <a href="{{route('register')}}">Crie sua conta grátis</a></p>
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
