@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\ProductPhotoController;
 use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\Auth\UpdateController;
 use App\Http\Controllers\Admin\NotificationController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\UserOrderController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
@@ -58,6 +59,7 @@ Route::group(["middleware" => ["auth"]], function(){
     Route::get("my-orders",[UserOrderController::class, 'index'])->name('user.orders');
     Route::get("user-edit/",[UpdateController::class, 'edit'])->name('user.edit');
     Route::post("user-update/",[UpdateController::class, 'update'])->name('user.update');
+    
 
     //usuários cadastrados como lojistas
     Route::group(["middleware" => ["acess.control.store.admin"]], function(){
@@ -75,7 +77,7 @@ Route::group(["middleware" => ["auth"]], function(){
             Route::resource('stores', StoreController::class);
             Route::resource('products',ProductController::class);
             Route::resource('categories', CategoryController::class);
-            
+            Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
             
             Route::post('photos/remove', [ProductPhotoController::class, 'removePhoto'])->name('photo.remove');
 
