@@ -1,7 +1,7 @@
 @extends('layouts.front')
 
 @section('content')
-    <div class="row front">
+    <div id="containerLoja" class="row front">
 
         <div class="col-md-4">
             @if($store->logo)

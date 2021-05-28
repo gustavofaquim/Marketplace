@@ -10026,11 +10026,22 @@ h3 {
   margin: auto;
 }
 
-/*welcome.blade*/
-.links {
+#blocoHome {
+  width: 300px !important;
+  min-height: 470px !important;
+  max-width: unset !important;
+  flex: unset !important;
+  margin-bottom: 25px !important;
+  margin-right: 15px !important;
+  margin-left: 15px !important;
+  padding: unset !important;
+}
+#blocoHome .links {
+  width: 100%;
+  height: 100%;
   text-decoration: none;
 }
-.links:hover {
+#blocoHome .links:hover {
   text-decoration: none;
 }
 
@@ -10038,6 +10049,7 @@ h3 {
   color: black;
   width: 100%;
   height: 100%;
+  padding: 10px;
 }
 .card-products img {
   width: 296px;
@@ -10049,19 +10061,7 @@ h3 {
 }
 .card-products h3 {
   font-weight: bold;
-  margin-top: 10px;
-}
-
-#blocoHome {
-  width: 260px !important;
-  height: 280px !important;
-  max-width: unset !important;
-  flex: unset !important;
-  margin-bottom: 25px !important;
-}
-#blocoHome a {
-  width: 100%;
-  height: 100%;
+  margin-top: 20px;
 }
 
 #blocoProduto {
@@ -10097,6 +10097,13 @@ h3 {
 }
 
 @media (max-width: 768px) {
+  #blocoNav {
+    width: 100% !important;
+  }
+  #blocoNav #buscaMenu {
+    flex-flow: unset !important;
+  }
+
   #row {
     display: flex !important;
     align-items: center !important;
@@ -10106,5 +10113,15 @@ h3 {
   #blocoHome {
     padding-left: unset !important;
     padding-right: unset !important;
+  }
+
+  .card-products img {
+    width: 296px;
+    height: 250px;
+    max-height: 100%;
+  }
+
+  #containerLoja {
+    justify-content: center;
   }
 }
