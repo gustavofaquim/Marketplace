@@ -8,8 +8,7 @@ use App\Models\UserOrder;
 class UserOrderController extends Controller
 {
     public function index(){
-        $userOrders = auth()->user()->orders()->paginate(15);
-        
+        $userOrders = auth()->user()->orders()->orderBy('id','desc')->paginate(15);
 
         return view('user-orders', ['userOrders' => $userOrders]);
     }
