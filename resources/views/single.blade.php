@@ -31,8 +31,11 @@
 
                 <p>{{$product->description}}</p>
 
-                <h3> R$ {{number_format($product->price, '2',',','.')}}</h3>
-
+                @if($product->in_stock > 0)
+                    <h3> R$ {{number_format($product->price, '2',',','.')}}</h3>
+                @else
+                    <h4>Produto indisponível</h4>
+                @endif
                 <span>Loja: {{$product->store->name}}</span>
             </div>
             <hr>
@@ -43,11 +46,12 @@
                     <input type="hidden" name="product[price]" value="{{$product->price}}">
                     <input type="hidden" name="product[slug]" value="{{$product->slug}}">
 
+                    @if($product->in_stock > 0)
                     <div class="form-group">
                         <label for="">Quantidade</label>
                         <input type="number" name="product[amount]" class="form-control col-md-2" value="1" min="1">
                     </div>
-                    <button class="btn btn-lg btn-danger">Comprar</button>
+                    <button class="btn btn-lg btn-danger">Comprar</button>@endif
                 </form>
             </div>
         </div>
