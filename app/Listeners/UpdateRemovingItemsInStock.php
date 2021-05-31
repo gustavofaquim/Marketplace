@@ -27,7 +27,7 @@ class UpdateRemovingItemsInStock
      */
     public function handle(UserOrderedItems $event)
     {
-        (new ProductStockManagerService($event->userOrder))->addInProductInStock();
+        (new ProductStockManagerService($event->userOrder))->removeProductFromStock();
     }
 }
 

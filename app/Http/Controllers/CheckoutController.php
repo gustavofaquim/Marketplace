@@ -8,6 +8,7 @@ use App\Payment\PagSeguro\Boleto;
 use App\Payment\PagSeguro\Notification;
 use \App\Models\Store;
 use \App\Events\UserOrderedItems;
+use \App\Models\UserOrder;
 
 class CheckoutController extends Controller
 {
@@ -61,24 +62,29 @@ class CheckoutController extends Controller
             
             $result = $payment->doPayment();
             
+            
             $userOrder = [
                 'reference' => $reference,
                 'pagseguro_code' => $result->getCode(),
                 'pagseguro_status' => $result->getStatus(),
-                'items' => $cartItems,
-                'type' => $dataPost['paymentType'],
-                'link_boleto' => $dataPost['paymentType'] == 'BOLETO' 
-                    ? $result->getPaymentLink() : null   
+                'items' => serialize($cartItems),
+                //'type' => $dataPost['paymentType'],
+                //'link_boleto' => $dataPost['paymentType'] == 'BOLETO' ? $result->getPaymentLink() : null   
             ];
 
-            $userOrder = $user->orders()->create($userOrder); 
-            $userOrder->stores()->sync($stores);
             
+            
+            $userOrder = $user->orders()->create($userOrder);  
+            
+            $userOrder->stores()->sync($stores); //Melhorar isso aqui, vários pedidos no lugar de um só
+            
+
+            event(new UserOrderedItems($userOrder));
 
             //Notificar loja de novo pedido
             $store = (new Store())->notifyStoreOwners($stores);
 
-
+        
             //error_log
             session()->forget('cart'); //Remove elementos da sessão
             session()->forget('pagseguro_session_code'); //Remove elementos da sessão
@@ -95,14 +101,14 @@ class CheckoutController extends Controller
 
 
              //Disparar um evento e entender como ele é escutado...
-            UserOrderedItems::dispatch($cartItems);
+            //UserOrderedItems::dispatch($cartItems);
 
             return response()->json([
                     'data'=> $dataJson           
             ]); 
 
         }catch (\Exception $e) {
-    		$message = env('APP_DEBUG') ? simplexml_load_string($e->getMessage()) : 'Erro ao processar pedido!';
+    		$message = env('APP_DEBUG') ? $e->getMessage() : 'Erro ao processar pedido!';
 
 		    return response()->json([
 			    'data' => [

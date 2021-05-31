@@ -18,8 +18,7 @@ function proccessPayment(token, paymentType, buttonTarget)
         url: urlProccess,
         data: data,
         dataType: 'json',
-        success: function(res) {
-            
+        success: function(res) { 
             let redirectUrl = `${urlThanks}?order=${res.data.order}`; // 127.0.0.1:8000/checkout/thanks?order=21212
             let linkBoleto = `${redirectUrl}&b=${res.data.link_boleto}`; // 127.0.0.1:8000/checkout/thanks?order=21212&b=link-boleto
             //alert(linkBoleto);

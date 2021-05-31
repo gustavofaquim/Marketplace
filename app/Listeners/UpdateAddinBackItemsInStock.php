@@ -27,6 +27,6 @@ class UpdateAddinBackItemsInStock
      */
     public function handle(UserCancelledOrder $event)
     {
-        (new ProductStockManagerService($event->userOrder))->removeProductFromStock();
+        (new ProductStockManagerService($event->userOrder))->addInProductInStock();
     }
 }

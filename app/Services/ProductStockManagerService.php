@@ -2,14 +2,14 @@
 
 namespace App\Services;
 
-use App\Models\UserOrder;
-use App\Models\Product;
+use \App\Models\UserOrder;
+use \App\Models\Product;
 
 class ProductStockManagerService{
 
     private $userOrder;
 
-    public function __construct(Userorder $userOrder){
+    public function __construct(UserOrder $userOrder){
         $this->userOrder = $userOrder;
     }
 
