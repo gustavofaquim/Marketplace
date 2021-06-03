@@ -96,7 +96,7 @@ class RegisterController extends Controller
         $user->addresses()->create($address);
         
        
-        dd($address);
+        return $user;
 
         /*return User::create([
             'name' => $data['name'],

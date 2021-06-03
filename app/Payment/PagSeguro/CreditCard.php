@@ -41,7 +41,8 @@ class CreditCard{
 
 
         $creditCard->setSender()->setName($user->name);
-        $creditCard->setSender()->setEmail($email);
+        #$creditCard->setSender()->setEmail($email);
+        $creditCard->setSender()->setEmail$user->email);
 
         $creditCard->setSender()->setPhone()->withParameters(
             11,
@@ -57,28 +58,61 @@ class CreditCard{
 
         $creditCard->setSender()->setIp('127.0.0.0');
 
+        $cont = 0;
+        
+        
+        foreach($user->addresses as $addresses){
+            $address = [
+                'street' => $addresses->street,
+                'district' => $addresses->district,
+                'zip_code' => $addresses->zip_code,
+                'city' => $addresses->city,
+                'complement' => $addresses->complement
+            ];
+        };
+        
         
         $creditCard->setShipping()->setAddress()->withParameters(
-            'Av. Brig. Faria Lima',
+            $address['street'],
+            '000',
+            $address['district'],
+            $address['zip_code'],
+            $address['city'],
+            'GO',
+            'BRA',
+            $address['complement'],
+            
+
+            /* 'Av. Brig. Faria Lima',
             '1384',
             'Jardim Paulistano',
             '01452002',
             'São Paulo',
             'SP',
             'BRA',
-            'apto. 114'
+            'apto. 114' */
         );
 
         
         $creditCard->setBilling()->setAddress()->withParameters(
-            'Av. Brig. Faria Lima',
+            $address['street'],
+            '000',
+            $address['district'],
+            $address['zip_code'],
+            $address['city'],
+            'GO',
+            'BRA',
+            $address['complement'],
+            
+            
+            /*'Av. Brig. Faria Lima',
             '1384',
             'Jardim Paulistano',
             '01452002',
             'São Paulo',
             'SP',
             'BRA',
-            'apto. 114'
+            'apto. 114' */
         );
 
       
@@ -101,7 +135,8 @@ class CreditCard{
 
         $creditCard->setHolder()->setDocument()->withParameters(
             'CPF',
-            '04973452181'
+            #'04973452181'
+            $user-cpf;
         );
 
        
