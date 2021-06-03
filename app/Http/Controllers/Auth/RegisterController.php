@@ -57,7 +57,6 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'cpf' => ['required', 'string'],
-            'address' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'role' => ['string'],
@@ -74,14 +73,45 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'cpf' => $data['cpf'],
-            'address' => $data['address'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'role'    => array_key_exists('role', $data) ? $data['role']  : 'ROLE_USER', //ROLE_OWNER   ROLE_USER
         ]);
+
+        //dd($user);
+        
+        $address = [
+            'state' => $data['state'],
+            'city' => $data['city'],
+            'street' => $data['street'],
+            'district' => $data['district'],
+            'complement' => $data['complement'],
+            //'reference_point' => $data['reference_point'],
+            'zip_code' => $data['zip_code'],
+        ];
+
+        $user->addresses()->create($address);
+        
+       
+        dd($address);
+
+        /*return User::create([
+            'name' => $data['name'],
+            'cpf' => $data['cpf'],
+            'state' => $data['state'],
+            'city' => $data['city'],
+            'street' => $data['street'],
+            'district' => $data['district'],
+            'complement' => $data['complement'],
+            //'reference_point' => $data['reference_point'],
+            'zip_code' => $data['zip_code'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'role'    => array_key_exists('role', $data) ? $data['role']  : 'ROLE_USER', //ROLE_OWNER   ROLE_USER
+        ]); */
 
        
     }
