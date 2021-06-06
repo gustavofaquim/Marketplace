@@ -11,6 +11,7 @@ function proccessPayment(token, paymentType, buttonTarget)
         data.card_token = token;
         data.installment = document.querySelector('select.select_installments').value;
         data.card_name =  document.querySelector('input[name=card_name]').value;
+        data.card_cpf = document.querySelector('input[name=cpf_card]').value;
     }
 
     $.ajax({
@@ -29,7 +30,7 @@ function proccessPayment(token, paymentType, buttonTarget)
             buttonTarget.disabled = false;
             buttonTarget.innerHTML = 'Efetuar Pagamento';
 
-            let message = JSON.parse(err.responseText);
+            var message = JSON.parse(err.responseText);
             document.querySelector('div.msg').innerHTML = showErrorMessages(message.data.message.error.message);
         }
     });
@@ -40,7 +41,7 @@ function getInstallments(amount, brand) {
     PagSeguroDirectPayment.getInstallments({
         amount: amount,
         brand: brand,
-        maxInstallmentNoInterest: 0,
+        maxInstallmentNoInterest: 2,
         success: function(res) {
             let selectInstallments = drawSelectInstallments(res.installments[brand]);
             document.querySelector('div.installments').innerHTML = selectInstallments;
@@ -61,7 +62,7 @@ function drawSelectInstallments(installments) {
     select += '<select class="form-control select_installments">';
 
     for(let l of installments) {
-        select += `<option value="${l.quantity}|${l.installmentAmount}">${l.quantity}x de ${l.installmentAmount} - Total fica ${l.totalAmount}</option>`;
+        select += `<option value="${l.quantity}|${l.installmentAmount}"> ${l.quantity}x de ${l.installmentAmount} - R$ ${l.totalAmount}</option>`;
     }
 
 

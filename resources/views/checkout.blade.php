@@ -66,6 +66,14 @@
                             <input type="text" class="form-control" name="card_cvv">
                         </div>
 
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5 form-group">
+                            <label>CPF do Titular do Cartão</label>
+                            <input type="text" class="form-control" name="cpf_card">
+                        </div>
+
                         <div class="col-md-12 installments form-group"></div>
                     </div>
 
