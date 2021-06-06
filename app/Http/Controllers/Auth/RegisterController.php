@@ -88,6 +88,7 @@ class RegisterController extends Controller
             'city' => $data['city'],
             'street' => $data['street'],
             'district' => $data['district'],
+            'number' => $data['number'],
             'complement' => $data['complement'],
             //'reference_point' => $data['reference_point'],
             'zip_code' => $data['zip_code'],

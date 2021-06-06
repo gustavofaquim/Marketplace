@@ -14,6 +14,7 @@ class Address extends Model
         'city',
         'street',
         'district',
+        'number',
         'complement',
         'reference_point',
         'zip_code',
