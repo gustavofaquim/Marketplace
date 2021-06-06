@@ -19,9 +19,10 @@ class CreateAddressesTable extends Migration
             $table->string('state');
             $table->string('city');
             $table->string('street');
+            $table->string('number');
             $table->string('district');
             $table->string('complement');
-            $table->string('reference_point');
+            $table->string('reference_point')->nullable();
             $table->string('zip_code');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
