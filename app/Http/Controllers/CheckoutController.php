@@ -29,11 +29,18 @@ class CheckoutController extends Controller
     
     
             $cartItems = array_map(function($line){
-                return $line['amount'] * $line['price'];
+                $price = number_format($line['price'], 2, '.', '');
+                $price = $line['amount'] * $price;
+                $total = number_format($price, 2,'.','');
+                return $total;
             }, session()->get('cart'));
+
+
             
             $cartItems = array_sum($cartItems);
-            
+            $cartItems = number_format($cartItems,2,'.','');
+           
+
             return view('checkout', ['cartItems'=> $cartItems]);
 
         }catch(\Exception $e){
