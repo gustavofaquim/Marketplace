@@ -22,6 +22,7 @@
         "sass-loader": "^8.0.0"
     },
     "dependencies": {
-        "inputmask": "^5.0.5"
+        "inputmask": "^5.0.5",
+        "mercadopago": "^1.5.8"
     }
 }

@@ -50,6 +50,9 @@ Route::prefix('checkout')->name('checkout.')->group(function(){
     Route::post('/proccess', [CheckoutController::class, 'proccess'])->name('proccess');
     Route::get('/thanks', [CheckoutController::class, 'thanks'])->name('thanks');
     Route::post('/notification', [CheckoutController::class, 'notification'])->name('notification');
+    Route::get('/mercado', [CheckoutController::class, 'index_mercado'])->name('mercado');
+    Route::post('/process_payment', [CheckoutController::class, 'mercado_process'])->name('process_payment');
+    
 });
 
 
