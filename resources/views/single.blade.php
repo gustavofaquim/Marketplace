@@ -14,7 +14,7 @@
 
                 <div class="row" style="margin-top:20px;">
                 @foreach($product->photos as $photo)
-                    <div class="col-4">
+                    <div class="col-4" style="display: none">
                         <img src="{{asset('storage/'.$photo->image)}}" alt="" class="img-fluid img-small">
                     </div>
                 @endforeach
@@ -57,26 +57,27 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-12">
+    <div class="row" id="infoProduto">
+        <div class="col-12" id="colunaInfoProduto">
+            <h3 class="titulo-info">Informações do produto</h3>
             <hr>
             {{$product->body}}
         </div>
 
         <div class='col-12'>
-            
-        @if($product->information != "")
-        <table class="table table-striped">
-            <tbody>
-            @foreach($product->information as $information){
-                <tr>
-                    <td>{{$information}}</td>
-                </tr>
-            }
-            @endforeach        
-            </tbody>
-        </table>
-        @endif
+            <h3 class="titulo-info">Ficha Técnica</h3>
+            @if($product->information != "")
+            <table class="table table-striped">
+                <tbody>
+                @foreach($product->information as $information){
+                    <tr>
+                        <td>{{$information}}</td>
+                    </tr>
+                }
+                @endforeach
+                </tbody>
+            </table>
+            @endif
 
 
         </div>
