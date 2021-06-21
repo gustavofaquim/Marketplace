@@ -35,15 +35,16 @@ class CreditCard{
                 $item['price']
             );
         }
+
+        
         
         $user = $this->user;
         $email = env('PAGSEGURO_ENV') == 'sandbox' ? 'c98334096010161335947@sandbox.pagseguro.com.br' : $user->email;
 
 
         $creditCard->setSender()->setName($user->name);
-        #$creditCard->setSender()->setEmail($email);
-        $creditCard->setSender()->setEmail$user->email);
-
+        $creditCard->setSender()->setEmail($email);
+        
         $creditCard->setSender()->setPhone()->withParameters(
             11,
             56273440
@@ -64,6 +65,7 @@ class CreditCard{
         foreach($user->addresses as $addresses){
             $address = [
                 'street' => $addresses->street,
+                'number' => $addresses->number,
                 'district' => $addresses->district,
                 'zip_code' => $addresses->zip_code,
                 'city' => $addresses->city,
@@ -74,7 +76,7 @@ class CreditCard{
         
         $creditCard->setShipping()->setAddress()->withParameters(
             $address['street'],
-            '000',
+            $address['number'],
             $address['district'],
             $address['zip_code'],
             $address['city'],
@@ -96,7 +98,7 @@ class CreditCard{
         
         $creditCard->setBilling()->setAddress()->withParameters(
             $address['street'],
-            '000',
+            $address['number'],
             $address['district'],
             $address['zip_code'],
             $address['city'],
@@ -119,13 +121,13 @@ class CreditCard{
         $creditCard->setToken($this->cardInfo['card_token']);
 
         
-
         list($quantity, $installmentAmount) = explode('|', $this->cardInfo['installment']);
-
+        
         $installmentAmount = number_format($installmentAmount, 2, '.', ''); 
 
-        $creditCard->setInstallment()->withParameters($quantity, $installmentAmount);
-
+        //dd($installmentAmount);
+        $creditCard->setInstallment()->withParameters($quantity, $installmentAmount, 2);
+        //Instância paramentro  nointerestInstallment colocando a quantidade de parcelas nele.
         $creditCard->setHolder()->setBirthdate('01/10/1979');
         $creditCard->setHolder()->setName($this->cardInfo['card_name']); 
         $creditCard->setHolder()->setPhone()->withParameters(
@@ -136,9 +138,10 @@ class CreditCard{
         $creditCard->setHolder()->setDocument()->withParameters(
             'CPF',
             #'04973452181'
-            $user-cpf;
+            $this->cardInfo['card_cpf']
         );
-
+        
+       dd($creditCard);
        
         $creditCard->setMode('DEFAULT');
 
@@ -146,7 +149,7 @@ class CreditCard{
         $result = $creditCard->register(
             \PagSeguro\Configuration\Configure::getAccountCredentials()
         );
-
+        
         return $result;
 
     }
