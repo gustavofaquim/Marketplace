@@ -3,6 +3,7 @@
     "/css/app.css": "/css/app.css",
     "/js/pagseguro_functions.js": "/js/pagseguro_functions.js",
     "/js/pagseguro_events.js": "/js/pagseguro_events.js",
+    "/js/mercadopago.js": "/js/mercadopago.js",
     "/css/style_front.css": "/css/style_front.css",
     "/css/style_app.css": "/css/style_app.css"
 }

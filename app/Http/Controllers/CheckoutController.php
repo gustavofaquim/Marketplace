@@ -41,7 +41,7 @@ class CheckoutController extends Controller
             $cartItems = number_format($cartItems,2,'.','');
            
 
-            return view('checkout', ['cartItems'=> $cartItems]);
+            return view('checkout_mercado', ['cartItems'=> $cartItems]);
 
         }catch(\Exception $e){
             session()->forget('pagseguro_session_code');
@@ -61,33 +61,108 @@ class CheckoutController extends Controller
         
         require '../vendor/autoload.php';
         
-        MercadoPago\SDK::setAccessToken("TEST-7494999275909007-062114-153cdd4e8b32500be50d3657afacaaf2-226431781");
+        $data = $request->all();
+        $user = auth()->user();
+        $cartItems = session()->get('cart');
+        $stores = array_unique(array_column($cartItems, 'store_id'));
+        $reference = uniqid(rand(), false);
+        
+        \MercadoPago\SDK::setAccessToken("TEST-7977807413081421-062317-ae988d2221aafc58cd5fa9c1cb858f63-780153727");
+        
+        
+        /*//Produtos
+        $item = new \MercadoPago\Item();
+        $item->id = "1234";
+        $item->title = "Heavy Duty Plastic Table";
+        $item->description = "Table is made of heavy duty white plastic and is 96 inches wide and 29 inches tall";
+        $item->category_id = "home";      //https://api.mercadopago.com/item_categories#json
+        $item->quantity = 7;
+        $item->currency_id = "BRL";
+        $item->unit_price = 75.56; */
+        
 
-        $payment = new MercadoPago\Payment();
-        $payment->transaction_amount = (float)$_POST['transactionAmount'];
-        $payment->token = $_POST['token'];
-        $payment->description = $_POST['description'];
-        $payment->installments = (int)$_POST['installments'];
-        $payment->payment_method_id = $_POST['paymentMethodId'];
-        $payment->issuer_id = (int)$_POST['issuer'];
-
-        $payer = new MercadoPago\Payer();
-        $payer->email = $_POST['email'];
+       
+        //Comprador
+        $payer = new \MercadoPago\Payer();
+        
+        //$payer->name = $data['payer']['name'];
+        $payer->email = $data['payer']['email'];
+       
+        //$payer->date_created = "2018-06-02T12:58:41.425-04:00";
+        /*$payer->phone = array(
+            "area_code" => "11",
+            "number" => "4444-4444"
+        );*/
+        
         $payer->identification = array(
-            "type" => $_POST['docType'],
-            "number" => $_POST['docNumber']
-        );
+           "type" => $data['payer']['identification']['type'],
+           "number" => $data['payer']['identification']['number']
+       );
+            
+        /*$payer->address = array(
+            "street_name" => "Street",
+            "street_number" => 123,
+            "zip_code" => "06233200"
+        );*/
+
+
+
+        //Pagamento
+        $payment = new \MercadoPago\Payment();
+        $payment->transaction_amount = (float) $data['transaction_amount'];
+        $payment->token = $data['token'];
+        $payment->description = $data['description'];
+        $payment->installments = (int)$data['installments'];
+        $payment->payment_method_id = $data['payment_method_id'];
+        $payment->issuer_id = (int)$data['issuer_id'];
+        
+        
+         
         $payment->payer = $payer;
-
+        //$payment->item = $item; //Depois mudar para um array
+        
         $payment->save();
-        dd($payment);
-
+       
         $response = array(
             'status' => $payment->status,
             'status_detail' => $payment->status_detail,
             'id' => $payment->id
         );
-        echo json_encode($response);
+        
+        //    echo json_encode($response);
+        
+        $userOrder = [
+            'reference' => $reference,
+            'pagseguro_code' => $response['id'],
+            'pagseguro_status' => 1,
+            'items' => serialize($cartItems),  
+        ];
+
+
+
+        $userOrder = $user->orders()->create($userOrder);  
+            
+        $userOrder->stores()->sync($stores); //Melhorar isso aqui, vários pedidos no lugar de um só
+            
+
+        event(new UserOrderedItems($userOrder));
+
+        //Notificar loja de novo pedido
+        $store = (new Store())->notifyStoreOwners($stores);
+
+        $dataJson = [
+            'status' => true,
+            'message' => 'Pedido efetuado com sucesso!',
+            'order' => $reference
+        ];
+
+        /*return response()->json([
+            'data'=> $dataJson           
+        ]);*/
+
+        //return redi view('thanks', ['order' => $reference]);
+        //return redirect( )->route('checkout.thanks');
+        return view('thanks');
     }
 
     // Fim Mercado Pago

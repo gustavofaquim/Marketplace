@@ -80,6 +80,7 @@
                     <button class="btn btn-success btn-lg processCheckout"  data-payment-type="CREDITCARD">Efetuar Pagamento</button>
                 </form>
             </div>
+            
             <!-- Fim Cartão de Crédito Conteúdo Tab-->
         </div>
 
@@ -101,6 +102,7 @@
 @endsection 
 
 @section('scripts')
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
     <script src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js"> </script>
    
    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> -->

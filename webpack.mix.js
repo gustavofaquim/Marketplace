@@ -17,5 +17,6 @@ mix.js('resources/js/app.js', 'public/js')
 
 mix.copy('resources/js/pagseguro_functions.js','public/js')
 mix.copy('resources/js/pagseguro_events.js','public/js')
+mix.copy('resources/js/mercadopago.js','public/js')
 mix.copy('resources/css/style_front.css','public/css')
 mix.copy('resources/css/style_app.css','public/css')
