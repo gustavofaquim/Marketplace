@@ -24,7 +24,7 @@
 
 #blocoHome{
     width: 300px !important;
-    min-height: 470px !important;
+    height: 450px !important;
     max-width: unset !important;
     flex: unset !important;
     margin-bottom: 25px !important;
@@ -43,8 +43,9 @@
 .card-products{
     color: black;
     width: 100%;
-    height: 100%;
+    height: 450px !important;
     padding: 10px;
+    position: absolute !important;
     img{
         width: 296px;
         height: 48%;
@@ -64,12 +65,20 @@
     height: 350px;
     #colunaProduto{
         height: 100%;
+        width:500px !important;
+        flex: unset !important;
     }
     #imgProduto{
         height: 100%;
     }
 }
 
+#infoProduto{
+    margin-top: 50px;
+}
+#colunaInfoProduto{
+    margin-bottom: 35px;
+}
 #blocoLoja {
     height: 300px !important;
     width: 300px !important;

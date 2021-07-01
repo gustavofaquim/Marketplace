@@ -10028,7 +10028,7 @@ h3 {
 
 #blocoHome {
   width: 300px !important;
-  min-height: 470px !important;
+  height: 450px !important;
   max-width: unset !important;
   flex: unset !important;
   margin-bottom: 25px !important;
@@ -10048,8 +10048,9 @@ h3 {
 .card-products {
   color: black;
   width: 100%;
-  height: 100%;
+  height: 450px !important;
   padding: 10px;
+  position: absolute !important;
 }
 .card-products img {
   width: 296px;
@@ -10071,9 +10072,19 @@ h3 {
 }
 #blocoProduto #colunaProduto {
   height: 100%;
+  width: 500px !important;
+  flex: unset !important;
 }
 #blocoProduto #imgProduto {
   height: 100%;
+}
+
+#infoProduto {
+  margin-top: 50px;
+}
+
+#colunaInfoProduto {
+  margin-bottom: 35px;
 }
 
 #blocoLoja {
