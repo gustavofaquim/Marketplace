@@ -10026,6 +10026,41 @@ h3 {
   margin: auto;
 }
 
+#blocoNav {
+  border: 1px solid red;
+}
+
+#buscaMenu {
+  margin: auto;
+  text-align: center;
+  background-color: #f7f7f7 !important;
+  border-radius: 40px;
+  padding: 5px;
+  max-width: 700px;
+}
+#buscaMenu input {
+  color: #343a40;
+  border: 0;
+  outline: 0;
+  background: none;
+  padding: 0 5px;
+  text-align: left;
+}
+#buscaMenu input:focus {
+  box-shadow: 0 0 0 0;
+  outline: 0;
+}
+#buscaMenu button {
+  height: 40px;
+  width: 40px;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  text-decoration: none;
+}
+
 #blocoHome {
   width: 300px !important;
   height: 450px !important;

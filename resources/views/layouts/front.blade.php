@@ -40,7 +40,7 @@
             <ul class="navbar-nav">
                 <form id="buscaMenu" class="form-inline my-2 my-lg-0" action="{{route('search')}}">
                     <input class="form-control mr-sm-2" type="search" placeholder="Buscar por nome, código, descrição" aria-label="Search" id="a" name="a">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
                 </form>
             </ul>
         </div>
