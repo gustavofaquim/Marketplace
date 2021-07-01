@@ -1,6 +1,6 @@
 function proccessPayment(token, paymentType, buttonTarget)
 {
-  
+    alert(paymentType);
     let data = {
         hash: PagSeguroDirectPayment.getSenderHash(),
         paymentType: paymentType,
@@ -10,6 +10,7 @@ function proccessPayment(token, paymentType, buttonTarget)
     if(paymentType === 'CREDITCARD') {
         data.card_token = token;
         data.installment = document.querySelector('select.select_installments').value;
+        console.log(data.installment);
         data.card_name =  document.querySelector('input[name=card_name]').value;
         data.card_cpf = document.querySelector('input[name=cpf_card]').value;
     }
@@ -27,10 +28,12 @@ function proccessPayment(token, paymentType, buttonTarget)
             window.location.assign(paymentType === 'BOLETO' ? linkBoleto : redirectUrl);
         },
         error: function(err) {
+            console.log(err.responseText);
             buttonTarget.disabled = false;
             buttonTarget.innerHTML = 'Efetuar Pagamento';
-
+            
             var message = JSON.parse(err.responseText);
+            
             document.querySelector('div.msg').innerHTML = showErrorMessages(message.data.message.error.message);
         }
     });
@@ -41,6 +44,7 @@ function getInstallments(amount, brand) {
     PagSeguroDirectPayment.getInstallments({
         amount: amount,
         brand: brand,
+        //Quantidade de parcelas em juros
         maxInstallmentNoInterest: 2,
         success: function(res) {
             let selectInstallments = drawSelectInstallments(res.installments[brand]);
@@ -60,12 +64,15 @@ function drawSelectInstallments(installments) {
     let select = '<label>Opções de Parcelamento:</label>';
 
     select += '<select class="form-control select_installments">';
-
+    //${parseFloat(l.installmentAmount.toFixed(2))
+    
     for(let l of installments) {
         select += `<option value="${l.quantity}|${l.installmentAmount}"> ${l.quantity}x de ${l.installmentAmount} - R$ ${l.totalAmount}</option>`;
+        console.log(parseFloat(l.installmentAmount.toFixed(2)));
+        console.log(l);
     }
-
-
+    
+    
     select += '</select>';
 
     return select;
@@ -82,7 +89,7 @@ function errorsMapPagseguroJS(code)
 {
     switch(code) {
         case "10000":
-            return 'Bandeira do cartão inválida!';
+            return 'Bandeira do cartão inválida!'
             break;
 
         case "10001":

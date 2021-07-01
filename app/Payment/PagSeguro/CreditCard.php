@@ -141,7 +141,7 @@ class CreditCard{
             $this->cardInfo['card_cpf']
         );
         
-       dd($creditCard);
+       //dd($creditCard);
        
         $creditCard->setMode('DEFAULT');
 

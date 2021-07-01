@@ -41,7 +41,8 @@ class CheckoutController extends Controller
             $cartItems = number_format($cartItems,2,'.','');
            
 
-            return view('checkout_mercado', ['cartItems'=> $cartItems]);
+            //return view('checkout_mercado', ['cartItems'=> $cartItems]);
+            return view('checkout', ['cartItems'=> $cartItems]);
 
         }catch(\Exception $e){
             session()->forget('pagseguro_session_code');
@@ -161,8 +162,8 @@ class CheckoutController extends Controller
         ]);*/
 
         //return redi view('thanks', ['order' => $reference]);
-        //return redirect( )->route('checkout.thanks');
-        return view('thanks');
+        return redirect()->route('checkout.thanks');
+        //return view('thanks');
     }
 
     // Fim Mercado Pago
@@ -197,7 +198,6 @@ class CheckoutController extends Controller
                 //'link_boleto' => $dataPost['paymentType'] == 'BOLETO' ? $result->getPaymentLink() : null   
             ];
 
-            
             
             $userOrder = $user->orders()->create($userOrder);  
             

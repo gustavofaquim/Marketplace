@@ -37,6 +37,10 @@ submitButton.forEach(function(el, k) {
 
         let paymentType = buttonTarget.dataset.paymentType;
         
+        if(paymentType === 'BOLETO') {
+            proccessPayment(null, paymentType, buttonTarget);
+        }
+        
         if(paymentType === 'CREDITCARD') {
             PagSeguroDirectPayment.createCardToken({
                 cardNumber: document.querySelector('input[name=card_number]').value,
@@ -57,9 +61,6 @@ submitButton.forEach(function(el, k) {
                 }
             });
         }
-
-        if(paymentType === 'BOLETO') {
-            proccessPayment(null, paymentType, buttonTarget);
-        }
+       
     });
 });
