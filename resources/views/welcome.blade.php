@@ -2,6 +2,31 @@
 
 @section('content')
     <div class="row front" id="row">
+        
+        <div id="bannerPrincipal">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" id="indicadorSlide" class="active"></li>
+            </ol>
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                <img class="d-block w-100" src="{{asset('assets/img/no-photo.jpg')}}" alt="Primeiro Slide">
+                </div>
+            </div>
+
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Anterior</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Próximo</span>
+            </a>
+            </div>
+        </div>
+
+
         @foreach($products as $key => $product)
            <div class="col-md-3" id="blocoHome">
            <a href="{{route('product.single', ['slug'=> $product->slug])}}" class="links">
@@ -26,25 +51,6 @@
 
     </div>
 
-    @if($stores->count() > 0)
-        <div class="row">
-        <div class="col-12">
-            <h2>Lojas Destaque</h2>
-            <hr>
-        </div>
-            @foreach($stores as $store)
-                <div class="col-4" id="blocoLoja">
-                @if($store->logo)
-                        <img src="{{asset('storage/'.$store->logo)}}" alt="{{$store->name}}" class="img-fluid">
-                    @else
-                        <img src="https://via.placeholder.com/400X150.png?text=logo" alt="Loja sem logo" class="img-fluid">
-                @endif
-                    <h3 class="titleLoja">{{$store->name}}</h3>
-                    <p>{{$store->description}}</p>
-                    <a id="botaoLoja" href="{{ route('store.single', ['slug' => $store->slug])}}" class="btn btn-sm-success">Ver Loja</a>
-                </div>
-            @endforeach
-        </div>
-    @endif
+    
 
 @endsection

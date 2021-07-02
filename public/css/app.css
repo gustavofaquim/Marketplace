@@ -10026,10 +10026,6 @@ h3 {
   margin: auto;
 }
 
-#blocoNav {
-  border: 1px solid red;
-}
-
 #buscaMenu {
   margin: auto;
   text-align: center;
@@ -10078,6 +10074,17 @@ h3 {
 }
 #blocoHome .links:hover {
   text-decoration: none;
+}
+
+#container {
+  width: 89% !important;
+  max-width: 100% !important;
+}
+
+#indicadorSlide {
+  border-radius: 50%;
+  width: 5px;
+  height: 5px;
 }
 
 .card-products {
@@ -10159,11 +10166,6 @@ h3 {
 }
 #blocoLoja #botaoLoja:hover {
   background-color: lightgray;
-}
-
-#container {
-  width: 100% !important;
-  max-width: 100% !important;
 }
 
 @media (max-width: 768px) {

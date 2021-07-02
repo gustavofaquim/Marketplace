@@ -32,7 +32,7 @@
                 @else
                     <h4>Produto indisponível</h4>
                 @endif
-                <span>Loja: {{$product->store->name}}</span>
+                <span>Vendido e entregue por: {{$product->store->name}}</span>
 
                 <form action="{{route('cart.add')}}" method="post">
                     @csrf
