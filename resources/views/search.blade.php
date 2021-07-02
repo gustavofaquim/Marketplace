@@ -4,7 +4,8 @@
 
 <div class="row front">
     <div class="col-md-12">
-        <h2>Foram encontrados {{ $results->count() }} resultados com o termo buscado: "<span>{{$search}}</span>"</h2>
+        <h2>Foram encontrados {{ $results->count() }} resultados para: "<span>{{$search}}</span>"</h2>
+        <hr>
     </div>
         @foreach($results as $key => $result)
            <div class="col-md-3"> 

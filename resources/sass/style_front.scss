@@ -76,17 +76,10 @@
 }
 
 #container{
-    width: 89% !important;
+    width: 80% !important;
     max-width: 100% !important;
 }
 
-//
-
-#indicadorSlide{
-    border-radius: 50%;
-    width: 5px;
-    height: 5px;
-}
 
 .card-products{
     width: 100%;
@@ -123,10 +116,10 @@
 #blocoProduto{
     width: 90%;
     margin: auto;
-    border: 1px solid yellow;
+    margin-top: 50px;
     .colunaProduto{
         margin: auto;
-        width: 500px !important;
+        width: 420px !important;
         height: 500px;
         flex: unset !important;
     }
@@ -141,6 +134,7 @@
         max-height: 100%;
         box-sizing: content-box;
         object-fit: contain;
+        margin: auto;
     }
 }
 
@@ -167,6 +161,24 @@
             background-color: lightgray;
         }
     }
+}
+
+// Carrinho de Compras
+
+#carrinhoCompras{
+    background-color: white;
+    margin-top: 40px;
+    text-align: center;
+    th,td{
+        border: 0px solid !important;
+    }
+    tr{
+        border-bottom: 1px solid #dee2e6 !important;
+    }
+    #amount{
+        
+    }
+    
 }
 
 
