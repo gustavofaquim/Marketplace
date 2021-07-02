@@ -10121,18 +10121,19 @@ h3 {
 #blocoProduto .colunaProduto {
   margin: auto;
   width: 500px !important;
+  height: 500px;
   flex: unset !important;
-  border: 1px solid red;
 }
 #blocoProduto #colunaImgs img {
-  border: 1px solid green;
   max-width: 60%;
 }
 #blocoProduto #imgProduto {
   float: left;
-  width: 90%;
-  height: 90%;
-  border: 1px solid blue;
+  max-width: 100%;
+  max-height: 100%;
+  box-sizing: content-box;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 #infoProduto {

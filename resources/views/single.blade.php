@@ -12,7 +12,7 @@
                     @endforeach
                 </div>
 
-                <div class="col-md-auto colunaProduto" id="">
+                <div class="col-6 colunaProduto">
                     <img id="imgProduto" src="{{asset('storage/'.$product->thumb)}}" alt="" class="card-img-top thumb">
                 </div>
 
@@ -50,24 +50,24 @@
             </div>
     </div>
 
-    <div class="row" id="infoProduto">
+    <div class="container-fluid" id="infoProduto">
         <h3 class="titulo-info">Informações do produto</h3>
         <hr>
-        {{$product->body}}
+        <p>{{$product->name}}</p>
+        <p>{{$product->body}}</p>
 
-        <h3 class="titulo-info">Ficha Técnica</h3>
-            @if($product->information != "")
-                <table class="table table-striped">
-                    <tbody>
-                    @foreach($product->information as $information){
-                        <tr>
-                            <td>{{$information}}</td>
-                        </tr>
-                    }
-                    @endforeach
-                    </tbody>
-                </table>
-            @endif
+        @if($product->information != "")
+            <table class="table table-striped">
+                <tbody>
+                 @foreach($product->information as $information){
+                    <tr>
+                        <td>{{$information}}</td>
+                    </tr>
+                }
+                @endforeach
+                </tbody>
+            </table>
+        @endif
     </div>
 
     <br><br><br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br><br><br>
