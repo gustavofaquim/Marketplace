@@ -4,13 +4,6 @@
     <h3>{{ $product->name }}</h3>
     <div class="row" id="blocoProduto">
             @if($product->photos->count())
-                <div class="col colunaProduto" id="colunaImgs">
-                    @foreach($product->photos as $photo)
-                        <div class="col-4">
-                            <img src="{{asset('storage/'.$photo->image)}}" alt="" class="img-fluid img-small">
-                        </div>
-                    @endforeach
-                </div>
 
                 <div class="col-6 colunaProduto">
                     <img id="imgProduto" src="{{asset('storage/'.$product->thumb)}}" alt="" class="card-img-top thumb">
@@ -62,6 +55,14 @@
                     
                 </form>
             </div>
+    </div>
+    <div class="row" id="imagePreview">
+        <p>Veja mais fotos do produto</p>
+        <div class="col" id="colunaImgs">
+            @foreach($product->photos as $photo)
+                    <img src="{{asset('storage/'.$photo->image)}}" alt="" class="img-fluid img-small">
+            @endforeach
+        </div>
     </div>
 
     <div class="container-fluid" id="infoProduto">

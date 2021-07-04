@@ -123,11 +123,6 @@
         height: 500px;
         flex: unset !important;
     }
-    #colunaImgs{
-        img{
-            max-width: 60%;
-        }
-    }
     #imgProduto{
         float: left;
         max-width: 100%;
@@ -138,11 +133,30 @@
     }
 }
 
+#imagePreview{
+    width: 90%;
+    margin: auto;
+    #colunaImgs{
+        width: 420px;
+        height: 80px;
+        img{
+            max-width: 100%;
+            max-height: 100%;
+            box-sizing: content-box;
+            object-fit: contain;
+            margin: auto;
+            display: inline-block;
+        }
+    }
+}
+
+
 #infoProduto{
     margin-top: 50px;
 }
 #colunaInfoProduto{
     margin-bottom: 35px;
+   
 }
 #blocoLoja {
     height: 300px !important;

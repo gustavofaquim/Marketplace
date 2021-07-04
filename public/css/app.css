@@ -10125,9 +10125,6 @@ h3 {
   height: 500px;
   flex: unset !important;
 }
-#blocoProduto #colunaImgs img {
-  max-width: 60%;
-}
 #blocoProduto #imgProduto {
   float: left;
   max-width: 100%;
@@ -10136,6 +10133,24 @@ h3 {
   -o-object-fit: contain;
      object-fit: contain;
   margin: auto;
+}
+
+#imagePreview {
+  width: 90%;
+  margin: auto;
+}
+#imagePreview #colunaImgs {
+  width: 420px;
+  height: 80px;
+}
+#imagePreview #colunaImgs img {
+  max-width: 100%;
+  max-height: 100%;
+  box-sizing: content-box;
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin: auto;
+  display: inline-block;
 }
 
 #infoProduto {
