@@ -18,10 +18,9 @@ class CartController extends Controller
     
     public function add(Request $request){
         
-        
-        $productData = $request->get('product');
-        
-
+       // $productData = $request->get('product');
+        $productData = $request->all();
+       
 
        /* $products = session()->get('cart');
         $productsSlugs = array_column($products, 'slug');
@@ -59,8 +58,19 @@ class CartController extends Controller
         }
 
         //session()->push('cart', $product);
+        //return redirect()->route('product.single', ['slug' => $product['slug']])->with('msg', 'Produto adicionado ao carrinho');
         
-        return redirect()->route('product.single', ['slug' => $product['slug']])->with('msg', 'Produto adicionado ao carrinho');
+        $dataJson = [
+            'status' => true,
+            'message' => 'Produto adicionado ao carrinho!',
+            'slug' => $product['slug']
+        ]; 
+        
+        return response()->json([
+            'data'=> $dataJson           
+        ]); 
+
+        
     }
 
     public function remove($slug){

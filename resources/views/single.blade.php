@@ -2,6 +2,9 @@
 
 @section('content')
     <h3>{{ $product->name }}</h3>
+
+
+
     <div class="row" id="blocoProduto">
             @if($product->photos->count())
 
@@ -20,6 +23,7 @@
 
                 @if($product->in_stock > 0)
                     <h3> R$ {{number_format($product->price, '2',',','.')}}</h3>
+                    <p>em até 10x sem juros.</p>
                 @else
                     <h4>Produto indisponível</h4>
                 @endif
@@ -49,11 +53,12 @@
                     <button class="btn btn-lg btn-danger">Comprar</button>
                     @endif -->
 
-                    <button class="btn btn-lg btn-warning">Adicionar ao carrinho</button>  <br> <br>
-
-                    <button class="btn btn-lg btn-danger">Comprar Agora</button> 
+                    
                     
                 </form>
+                <button class="btn btn-lg btn-warning" id="1" onclick="type_link(this.id)" >Adicionar ao carrinho</button> <br>
+                <button class="btn btn-lg btn-danger" id="2" onclick="type_link(this.id)" >Comprar Agora</button> 
+                
             </div>
     </div>
     <div class="row" id="imagePreview">
@@ -87,10 +92,13 @@
 
     </div> 
 
+    
+
 @endsection
 
 @section('scripts')
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script>
 
         let thumb = document.querySelector('img.thumb');
@@ -102,7 +110,66 @@
             });
         });
 
+    </script>
+
+    <script>
+
+        let name =  `{{$product->name}}`;
+        let price =  `{{$product->price}}`;
+        let slug =  `{{$product->slug}}`;
+        let amount =  1;
+        const urlProccess = `{{route('cart.add')}}`;
+        const csrf = '{{csrf_token()}}';
+
+        const data = {
+            name: name,
+            price: price,
+            slug: slug,
+            amount: amount,
+            _token: csrf
+        }
+
+        function type_link(clicked_id){
+            if(clicked_id == "1"){
+                data.link = "single";
+            }else{
+                data.link = "cart";
+            }
+
+            enviar();
+        }   
+
+        function enviar(){
+            $.ajax({
+                type: 'POST',
+                url: urlProccess,
+                data: data,
+                dataType: 'json',
+                success: function(res) { 
+                    /*let cart = `{{route("cart.index")}}`; 
+                    let single = `{{route("product.single", ["slug" => "$product->slug"])}}`;
+                    
+                    //alert(res.data.message);
+                    
+                    toastr.success(res.data.message, 'Sucesso');
+                    window.location.assign(data.link === 'cart' ? cart : single); */
+
+                    const link = "";
+                    if(data.link === 'single'){
+                        toastr.success(res.data.message, 'Sucesso');
+                    }else{
+                        window.location.assign(`{{route("cart.index")}}`); 
+                    }
+                   
+                   
+                },
+            });
+        }
+
 
     </script>
+
+
+  
 
 @endsection

@@ -23,6 +23,7 @@
     },
     "dependencies": {
         "inputmask": "^5.0.5",
-        "mercadopago": "^1.5.8"
+        "mercadopago": "^1.5.8",
+        "toastr": "^2.1.4"
     }
 }

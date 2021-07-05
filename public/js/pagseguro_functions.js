@@ -1,6 +1,5 @@
 function proccessPayment(token, paymentType, buttonTarget)
 {
-    alert(paymentType);
     let data = {
         hash: PagSeguroDirectPayment.getSenderHash(),
         paymentType: paymentType,
@@ -15,6 +14,7 @@ function proccessPayment(token, paymentType, buttonTarget)
         data.card_cpf = document.querySelector('input[name=cpf_card]').value;
     }
 
+    //Enviando formulario
     $.ajax({
         type: 'POST',
         url: urlProccess,
