@@ -3,8 +3,6 @@
 @section('content')
     <h3>{{ $product->name }}</h3>
 
-
-
     <div class="row" id="blocoProduto">
             @if($product->photos->count())
 
@@ -91,7 +89,7 @@
     </div>
 
     </div> 
-
+               
     
 
 @endsection
@@ -117,12 +115,14 @@
         let name =  `{{$product->name}}`;
         let price =  `{{$product->price}}`;
         let slug =  `{{$product->slug}}`;
+        let photo = `{{$product->thumb}}`;
         let amount =  1;
         const urlProccess = `{{route('cart.add')}}`;
         const csrf = '{{csrf_token()}}';
 
         const data = {
             name: name,
+            photo: photo,
             price: price,
             slug: slug,
             amount: amount,

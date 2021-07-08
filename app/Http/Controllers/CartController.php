@@ -20,7 +20,6 @@ class CartController extends Controller
         
        // $productData = $request->get('product');
         $productData = $request->all();
-       
 
        /* $products = session()->get('cart');
         $productsSlugs = array_column($products, 'slug');

@@ -6,69 +6,78 @@
         <div class="col-md-12">
             <h2>Carrinho de Compras</h2>
         </div>
-
-        <div class="col-md-12">
+        
+        <div class="col col-lg-8">
            @if($cart)
-            <table class="table" id="carrinhoCompras">
-                    <thead>
-                        <tr>
-                            <th>Produto</th>
-                            <th>Preço</th>
-                            <th>Quantidade</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
+           
+            <table class="table" id="cart">
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Quantidade</th>
+                        <th>Entrega</th>
+                        <th>Preço</th>
+                     </tr>
+                </thead>
 
-                    <tbody>
+                <tbody>
                     @php 
                         $total = 0;
                     @endphp
                     @foreach($cart as $c)
-                            <tr>
-                                <td>{{$c['name']}}</td>
-                                <td> R$ {{number_format($c['price'],2,',','.')}}</td>
-                                <td> <input type="number" name="product[amount]" id="amount" class="form-control" value="{{$c['amount']}}" min="1"> </td>
-                                @php
-                                    $subtotal = $c['price'] * $c['amount'];
-                                    $total += $subtotal;
-                                @endphp
-                                <td>
-                                    
-                                </td>
-                            </tr>
-                    @endforeach
-
+                   
                         <tr>
-                        <td>
-                            <form action="">
-                                <label for="frete">Calcular frete</label>
-                                <input type="text" name="frete" id="frete">
-                                <button>calcular</button>
-                            </form>
-                        </td>
-                        <td>R$</td>
-                        <td>20 dias</td>
+                            <td id="tdName">
+                                @if($c['photo'])
+                                    <img src="{{asset('storage/'. $c['photo'])}}" id="img-thumb" alt="">    
+                                @endif
+                                {{$c['name']}}
+                            
+                            </td>
+                            <td id="tdAmount"> 
+                                <input type="number" name="product[amount]" id="amount" class="form-control" value="{{$c['amount']}}" min="1"> 
+                                <a href="{{ route('cart.remove', ['slug'=>$c['slug']])}}" class="">remover</a>
+                            </td>
+                            <td id="tdShipping"> receba até 20 de junho</td>
+                                
+                            @php
+                                $subtotal = $c['price'] * $c['amount'];
+                                $total += $subtotal;
+                            @endphp
+                            <td> R$ {{$total}}</td>
                         </tr>
-                        <tr>
-                            <td colspan="3"></td>
-                            <td colspan="2"> <span>R$ {{ number_format($total,2,',','.')}}</span> </td>
-                        </tr>
-
-                    </tbody>
-                </table>
-                <div class="col-md-12">
-                    <a href="{{ route('checkout.index')}}" class="btn btn-lg btn-success float-right">Concluir Compra</a>
-                    <a href="{{route('cart.cancel')}}" class="btn btn-lg btn-danger float-left">Cancelar Comprar</a>
-                </div>
-           @else
-           <div class="alert alert-warning">Carrinho Vazio...</div>
-
-
-           @endif
+                    @endforeach                        
+                </tbody>
+            </table>
+        </div>
+        <div class="col" id="summaryCart">
+            <h2>Resumo</h2>
+            <a href="{{ route('checkout.index')}}" class="btn btn-lg btn-success float-right">Concluir Compra</a>
+        </div>
+    
+        <div class="col-md-12">
+            <form action="" id="formCep" >
+                <p>Calcular frete e prazo de entrega</p>
+                <input type="text" class="" name="frete" id="frete">
+                <button>calcular</button>
+            </form> 
         </div>
 
-        <a href="{{ route('cart.remove', ['slug'=>$c['slug']])}}" class="btn btn-sm btn-danger">x</a>
+        <div class="col-md-12" id="cartCancel">
+            <a href="{{route('cart.cancel')}}" class="btn btn-lg btn-danger float-left">Cancelar Comprar</a>
+        </div>
+    
     </div>
+            
+    
+                
+        @else
+        <div class="alert alert-warning">Carrinho Vazio...</div>
+        @endif
+        
+    
+
+    
 
 @endsection 
 

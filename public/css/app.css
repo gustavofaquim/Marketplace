@@ -10178,17 +10178,56 @@ h3 {
   background-color: lightgray;
 }
 
-#carrinhoCompras {
+#cart {
   background-color: white;
   margin-top: 40px;
   text-align: center;
 }
-#carrinhoCompras th, #carrinhoCompras td {
+#cart th, #cart td {
   border: 0px solid !important;
 }
-#carrinhoCompras tr {
+#cart tr {
   border-bottom: 1px solid #dee2e6 !important;
 }
+#cart #tdAmount {
+  text-align: center;
+  width: 10%;
+}
+#cart #tdAmount a {
+  text-decoration: none;
+}
+#cart #tdName {
+  width: 50%;
+}
+#cart #tdName img {
+  width: 13%;
+}
+#cart #tdShipping {
+  width: 20%;
+}
+#cart #amount {
+  width: 70px;
+  height: 40px;
+}
+
+#summaryCart {
+  background-color: #f8f8f8;
+  align-self: self-start;
+  border-radius: 0.5rem;
+}
+
+#formCep p {
+  margin-bottom: 0px;
+}
+#formCep input {
+  padding: 5px;
+  width: 250px;
+}
+
+#cartCancel {
+  margin-top: 50px;
+}
+
 @media (max-width: 768px) {
   #blocoNav {
     width: 100% !important;
