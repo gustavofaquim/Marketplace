@@ -10228,6 +10228,10 @@ h3 {
   margin-top: 50px;
 }
 
+.disabled {
+  display: none;
+}
+
 @media (max-width: 768px) {
   #blocoNav {
     width: 100% !important;

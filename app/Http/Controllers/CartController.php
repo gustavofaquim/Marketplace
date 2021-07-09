@@ -13,6 +13,7 @@ class CartController extends Controller
         
         //dd($cart);
         return view('cart',['cart' => $cart]);
+        
     }
 
     
